@@ -1,22 +1,20 @@
 package org.legitzxdevelopment;
 
-import org.legitzxdevelopment.hashing.BCrypt;
+import org.legitzxdevelopment.util.Util;
 
 /**
  * Contributor(s): Luciano K
- * Description:
+ * Description: Main
  */
 public class PasswordManager {
     public static void main(String[] args) {
-        String originalPassword = "Thet0234)A0234A)$#@a";
-        String salt = BCrypt.gensalt(16);
-        String generatedSecuredPasswordHash = BCrypt.hashpw(originalPassword, salt);
+        // Util Dependency
+        Util util = new Util();
 
-        System.out.println(generatedSecuredPasswordHash);
+        // Input Manager
+        InputManager inputManager = new InputManager(util);
 
-        System.out.println(BCrypt.checkpw(originalPassword, generatedSecuredPasswordHash));
-
-        String s = BCrypt.hashpw(originalPassword, generatedSecuredPasswordHash);
-        System.out.println(s);
+        // Handle user input
+        inputManager.handle();
     }
 }
