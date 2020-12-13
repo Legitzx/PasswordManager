@@ -65,12 +65,18 @@ public class InputManager {
         System.out.println("WELCOME");
         System.out.println("1. Add new account");
         System.out.println("2. Obtain account");
+        System.out.println("3. Save");
+        System.out.println("4. Logout");
 
         int option = util.getUserInput("[Password Manager]: ", Integer.class);
 
         if(option == 1) {
             // ...
         } else if (option == 2) {
+            // ...
+        } else if (option == 3) {
+            // ...
+        } else if (option == 4) {
             // ...
         } else {
             System.out.println("Invalid");
