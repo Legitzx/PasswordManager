@@ -15,7 +15,8 @@ public class InputManager {
 
     public void handle() {
         util.clearWindow();
-        System.out.println("PASSWORD MANAGER");
+
+        System.out.println("---Welcome to the Password Manager---");
         System.out.println("Are you logging in or creating a new account?");
         System.out.println("1: Logging in");
         System.out.println("2: Creating new account");

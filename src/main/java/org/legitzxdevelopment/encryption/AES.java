@@ -14,7 +14,7 @@ import java.util.Base64;
 
 /**
  * Contributor(s): Luciano K
- * Description:
+ * Description: Utilizes the AES-256 GCM Algorithm
  */
 public class AES {
     public final int AES_KEY_SIZE = 256;
@@ -130,3 +130,25 @@ public class AES {
         return new String(decryptedText);
     }
 }
+
+/*
+AES aes = new AES();
+String data = "YAY IM GOING to get ENCRYPTED!!!";
+String key = "XdSXg*ELq%}D,k9='nZ?Y[pT)?N2wv_-}_Ja^Ek!>gG'@@}KGX89MPB{aWP$J9K";
+
+String encryptedData = aes.encrypt(data, key);
+
+System.out.println(encryptedData);
+
+int encIndex = encryptedData.indexOf("<IV>");
+System.out.println(encIndex);
+String encryptedDataNoIV = encryptedData.substring(0,encIndex);
+String IV = encryptedData.substring(encIndex + 4);
+
+System.out.println("DATA: " + encryptedDataNoIV);
+System.out.println("IV: " + IV);
+
+String decrypted = aes.decrypt(encryptedDataNoIV, key, IV);
+
+System.out.println("Decrypted: " + decrypted);
+ */
