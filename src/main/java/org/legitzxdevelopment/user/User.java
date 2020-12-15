@@ -7,20 +7,30 @@ import java.util.ArrayList;
  * Description: User POJO
  */
 public class User {
-    private String id; // Hashed masterpass:vaultkey
+    private String vaultKey; // Hashed masterpass:vaultkey
+    private String email;
     private ArrayList<Account> accounts;
 
-    public User(String id, ArrayList<Account> accounts) {
-        this.id = id;
+    public User(String vaultKey, String email, ArrayList<Account> accounts) {
+        this.vaultKey = vaultKey;
+        this.email = email;
         this.accounts = accounts;
     }
 
-    public String getId() {
-        return id;
+    public String getVaultKey() {
+        return vaultKey;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setVaultKey(String vaultKey) {
+        this.vaultKey = vaultKey;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public ArrayList<Account> getAccounts() {
