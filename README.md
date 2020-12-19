@@ -26,4 +26,4 @@ The Password Manager securely stores accounts in the cloud and takes advantage o
  
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
