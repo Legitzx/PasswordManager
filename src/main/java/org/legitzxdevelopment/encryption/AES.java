@@ -8,7 +8,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -51,20 +50,16 @@ public class AES {
      * @param key       Vault Key
      * @return          AES-256 GCM Encrypted Data - [Format: DATA<IV>IV] - <IV> is a separator, not data
      */
-    public String encrypt(String data, String key) {
+    public String encrypt(String data, String key, String IV) {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
             keyGenerator.init(AES_KEY_SIZE);
 
             setKey(key);
 
-            byte[] IV = new byte[GCM_IV_LENGTH];
-            SecureRandom random = new SecureRandom();
-            random.nextBytes(IV);
+            byte[] cipherText = encryptBase(data.getBytes(), secretKey, Base64.getDecoder().decode(IV));
 
-            byte[] cipherText = encryptBase(data.getBytes(), secretKey, IV);
-
-            return Base64.getEncoder().encodeToString(cipherText) + "<IV>" + Base64.getEncoder().encodeToString(IV);
+            return Base64.getEncoder().encodeToString(cipherText);
         } catch (Exception e) {
             return null;
         }
@@ -82,6 +77,7 @@ public class AES {
         try {
             return decryptBase(Base64.getDecoder().decode(data), secretKey, Base64.getDecoder().decode(IV));
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -132,6 +128,7 @@ public class AES {
 }
 
 /*
+// TODO: USE SAME IV FOR ENCRYPTING ENTIRE ACCOUNT - PROB GONNA HAVE TO ALTER encrypt/decrypt methods
 AES aes = new AES();
 String data = "YAY IM GOING to get ENCRYPTED!!!";
 String key = "XdSXg*ELq%}D,k9='nZ?Y[pT)?N2wv_-}_Ja^Ek!>gG'@@}KGX89MPB{aWP$J9K";

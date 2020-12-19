@@ -1,5 +1,6 @@
 package org.legitzxdevelopment.util;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -37,9 +38,27 @@ public class Util {
     }
 
     /**
+     * Checks to see if any of the args is empty
+     * @param args      String
+     * @return          Boolean [True = They all contain characters]
+     *                          [False = One of them may be empty]
+     */
+    public boolean isNotEmpty(String... args) {
+        for(String arg : args) {
+            if(arg.isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Clears the command prompt
      */
     public void clearWindow() {
-        // Not implemented yet
+        for(int x = 0; x < 5; x++) {
+            System.out.println();
+        }
     }
 }

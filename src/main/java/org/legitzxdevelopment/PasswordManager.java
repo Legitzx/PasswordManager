@@ -1,5 +1,6 @@
 package org.legitzxdevelopment;
 
+import org.legitzxdevelopment.api.PasswordManagerApi;
 import org.legitzxdevelopment.encryption.AES;
 import org.legitzxdevelopment.hashing.HashManager;
 import org.legitzxdevelopment.util.Util;
@@ -10,16 +11,15 @@ import org.legitzxdevelopment.util.Util;
  */
 public class PasswordManager {
     // Dependencies
-    private static InputManager inputManager;
-    private static HashManager hashManager;
-    private static AES aes;
+    private InputManager inputManager;
+    private HashManager hashManager;
+    private AES aes;
+    private Util util;
+    private PasswordManagerApi passwordManagerApi;
 
     public PasswordManager() {
         // Util Dependency
-        Util util = new Util();
-
-        // Input Manager
-        inputManager = new InputManager(util);
+        util = new Util();
 
         // Hash Manager
         hashManager = new HashManager();
@@ -27,8 +27,30 @@ public class PasswordManager {
         // AES Encryption
         aes = new AES();
 
+        // Password Manager Api
+        passwordManagerApi = new PasswordManagerApi(this);
+
+        // Input Manager
+        inputManager = new InputManager(this);
+
         // Handle user input
         inputManager.handle();
+    }
+
+    public Util getUtil() {
+        return util;
+    }
+
+    public PasswordManagerApi getPasswordManagerApi() {
+        return passwordManagerApi;
+    }
+
+    public HashManager getHashManager() {
+        return hashManager;
+    }
+
+    public AES getAes() {
+        return aes;
     }
 
     public static void main(String[] args) {

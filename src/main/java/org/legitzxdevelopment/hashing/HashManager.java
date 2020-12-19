@@ -5,12 +5,12 @@ package org.legitzxdevelopment.hashing;
  * Description: Provides methods that allow easy access to Bcrypt
  */
 public class HashManager {
-    public String hash(String input) {
-        String salt = BCrypt.gensalt(16);
-        return BCrypt.hashpw(input, salt);
+    private final String SALT = "$2a$12$ioWUm.jsGFPqR4m7yrUHI."; // I know using one salt for everything is not the best... This is just to get the ball rolling
+    public String hashString(String input) {
+        return BCrypt.hashpw(input, SALT);
     }
 
-    public boolean check(String originalPassword, String hashedPassword) {
+    private boolean check(String originalPassword, String hashedPassword) {
         return BCrypt.checkpw(originalPassword, hashedPassword);
     }
 }
